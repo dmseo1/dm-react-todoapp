@@ -9,7 +9,7 @@ const UseFetch = (callBack, url) => {   //callBack은 전달받을 함수
             .then(res => {
                 console.log("RESULT!!!: ");
                 console.log(res.data);
-                callBack(res.data); //setState를 
+                callBack(res.data); //setTodo를 부르게됨
                 setLoading(false);
             });
 
