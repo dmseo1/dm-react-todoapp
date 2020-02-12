@@ -1,26 +1,20 @@
-import React from 'react'
-import Item from '../components/Item'
-import { TodoContext } from '../utils/TodoStore'
+import React from 'react';
+import Item from '../components/Item';
+import { TodoContext } from '../utils/TodoStore';
 
 const List = () => {
-    const {mTodos, loading, changeTodoStatus} = React.useContext(TodoContext)
-    console.log("MTODOS", mTodos);
+    const {todos, loading} = React.useContext(TodoContext)
     var todoLists = <h1>Todo List is now loading...</h1>
-    
     if(!loading) {
-        todoLists = mTodos.map(data => { return <Item todo={data} key={data.id} changeTodoStatus={changeTodoStatus}> {data.title} </Item> })
+        todoLists = todos.map(data => { return <Item todo={data} key={data.id}> {data.title} </Item> });
     }
-   
-
     return (
         <div>
-            <ul>
-               
+            <ul>          
                 {todoLists}
-              
             </ul>
         </div>
-    )
+    );
 }
 
-export default List
+export default List;

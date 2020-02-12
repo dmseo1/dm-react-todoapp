@@ -1,32 +1,18 @@
-import React, { useState, useEffect } from 'react'
+import { useEffect } from 'react';
 
-const UseFetch = (callBack, url) => {   //callBack은 전달받을 함수
-    const [loading, setLoading] = useState(false)
-    const fetchInputData = () => {
-        setLoading(true);
+const useFetch = (callBack, url) => { 
+   
+    const fetchInitialData = () => {
         fetch(url)
-            .then(response => { return response.json() })
-            .then(res => {
-                console.log("RESULT!!!: ");
-                console.log(res.data);
-                callBack(res.data); //setTodo를 부르게됨
-                setLoading(false);
-            });
-
-
-        // axios.get('http://localhost:8008/api/todo')
-        // .then(response => { return response.json() })
-        // .then(res => { 
-        //   setTodos
-        // })
+        .then(response => response.json() )
+        .then(res => {
+            callBack(res.data); 
+        });
     }
-
-
+    
     useEffect(() => {
-        fetchInputData();
-    }, [])
-
-    return loading;
+        fetchInitialData();
+    }, []);
 }
 
-export default UseFetch
+export default useFetch;
